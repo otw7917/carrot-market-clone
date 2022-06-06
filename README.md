@@ -27,5 +27,27 @@ keyword
 `yarn add -D tailwindcss postcss autoprefixer` 🚀
 `yarn tailwindcss init -p`
 
+```css
+// <input tpye = number /> 화살표 지우기
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+```
+
 postcss.config.js
 tailwind.config.js
+
+Rule
+branch git-flow
+feature
+develop
+release
+hotfix
+main
+
+commit
+feat: ✨
+docs: 📚
