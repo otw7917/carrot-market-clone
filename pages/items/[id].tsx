@@ -29,10 +29,10 @@ function itemDetail() {
             motherfucker to get shot. You understand?
           </p>
           <div className='flex items-center justify-between space-x-1'>
-            <button className='flex-1 text-white font-medium bg-orange-400 rounded-md py-2 transition-colors '>
+            <button className='flex-1 text-white font-medium bg-orange-400 rounded-md py-2 hover:animate-pulse hover:bg-orange-600 '>
               Talk to seller
             </button>
-            <button className='p-2 flex items-center justify-center hover:text-red-600'>
+            <button className='p-2 flex items-center justify-center font-medium hover:text-red-600 bg-orange-100 rounded-md'>
               <svg
                 className='h-7 w-7 stroke-orange-300 hover:fill-orange-600 hover:stroke-orange-600'
                 xmlns='http://www.w3.org/2000/svg'
