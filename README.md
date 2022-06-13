@@ -51,3 +51,15 @@ main
 commit
 feat: ✨
 docs: 📚
+
+## HTML
+
+### 라벨 인풋 조합
+
+- 관련 label 클릭시 해당 input 포커스 맞춰줌!
+
+```html
+<label htmlFor="`${_id}`"></label> <input id="`${_id}`" type="number" />
+```
+
+[mozilla label, input](https://developer.mozilla.org/ko/docs/Web/HTML/Element/label)
