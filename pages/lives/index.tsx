@@ -1,5 +1,5 @@
 import React from "react";
-import FloatingButton from "../components/FloatingButton";
+import FloatingButton from "../../components/FloatingButton";
 
 function Lives() {
   return (
@@ -7,8 +7,11 @@ function Lives() {
       {Array(5)
         .fill(1)
         .map((_, i) => (
-          <div key={i}>
-            <div className='w-full rounded-md bg-slate-200 aspect-video'></div>
+          <div
+            key={i}
+            className='cursor-pointer p-2 hover:ring-2 hover:ring-orange-300 hover:rounded-lg hover:shadow-lg'
+          >
+            <div className='w-full rounded-md bg-slate-200 aspect-video '></div>
             <h3 className='text-gray-600 p-2 font-bold'>
               information about title
             </h3>
