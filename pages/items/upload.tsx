@@ -1,3 +1,5 @@
+import UploadButton from "../../components/UploadButton";
+
 function upload() {
   return (
     <div className='px-4 py-16'>
@@ -58,9 +60,7 @@ function upload() {
           />
         </div>
       </div>
-      <button className='mt-5 w-full text-white font-medium bg-orange-400 rounded-md py-2 hover:animate-pulse hover:bg-orange-600 '>
-        Upload product
-      </button>
+      <UploadButton name='upload product' />
     </div>
   );
 }
