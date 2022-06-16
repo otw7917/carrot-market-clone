@@ -1,11 +1,8 @@
 import { useState } from "react";
+import { cls } from "../libs/utils";
 
 function Enter() {
   const [method, setMethod] = useState<"email" | "phone">("phone");
-
-  function cls(...classnames: string[]) {
-    return classnames.join(" ");
-  }
 
   const onPhoneOrEmailClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const emailTab = (event.target as Element).classList.contains("email");
