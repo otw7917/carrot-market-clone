@@ -51,6 +51,7 @@ main
 commit
 feat: ✨
 docs: 📚
+dependency
 
 ## HTML
 
@@ -63,3 +64,7 @@ docs: 📚
 ```
 
 [mozilla label, input](https://developer.mozilla.org/ko/docs/Web/HTML/Element/label)
+
+## Prisma & planetScale
+
+[Prisma, planetScale 정리하기](./document/pp.md)
