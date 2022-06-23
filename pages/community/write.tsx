@@ -1,4 +1,5 @@
 import React from "react";
+import UploadButton from "../../components/UploadButton";
 
 function write() {
   return (
@@ -10,10 +11,7 @@ function write() {
           placeholder='질문 포스트'
         />
       </div>
-
-      <button className='mt-5 w-full text-white font-medium bg-orange-400 rounded-md py-2 hover:animate-pulse hover:bg-orange-600 '>
-        포스트!
-      </button>
+      <UploadButton name='포스트' />
     </form>
   );
 }
