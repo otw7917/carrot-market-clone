@@ -1,26 +1,12 @@
 import React from "react";
+import Message from "../../components/message";
 
 function ChatsDetail() {
   return (
     <div className='px-4 py-10 space-y-5'>
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-500' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 border border-gray-500 rounded-md'>
-          Hi how much are you selling them for?
-        </div>
-      </div>
-      <div className='flex flex-row-reverse items-start space-x-reverse space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-500' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 border border-gray-500 rounded-md'>
-          I want ￦20,000
-        </div>
-      </div>
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-500' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 border border-gray-500 rounded-md'>
-          미쳤어
-        </div>
-      </div>
+      <Message message='hi how much are you selling them for?' />
+      <Message message='i want $20, 000' isReverse />
+      <Message message='미쳤어!' />
       <div className='fixed bottom-5 w-full max-w-md flex justify-center items-center '>
         <div className='flex items-center w-full mx-auto'>
           <input
