@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Input from "../components/input";
 import { cls } from "../libs/utils";
 
 function Enter() {
@@ -43,33 +44,24 @@ function Enter() {
           </div>
         </div>
         <form className='flex flex-col mt-8'>
-          <label htmlFor='input' className='text-sm font-medium text-gray-700'>
-            {method === "email" ? "Email address" : null}
-            {method === "phone" ? "Phone number" : null}
-          </label>
-          <div>
-            {method === "email" ? (
-              <input
-                id='input'
-                type='email'
-                className='w-full px-3 py-2 border border-gray-300 rounded-md shadow-md plachoder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 '
-                required
-              />
-            ) : null}
-            {method === "phone" ? (
-              <div className='flex rounded-md shadow-md'>
-                <span className='flex items-center justify-center border border-gray-300 px-3 py-2 border-r-0 rounded-l-md shadow-md bg-slate-100'>
-                  +82
-                </span>
-                <input
-                  id='input'
-                  type='number'
-                  className='w-full px-3 py-2 border border-gray-300 rounded-md rounded-l-none shadow-md plachoder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 '
-                  required
-                />
-              </div>
-            ) : null}
-          </div>
+          {method === "email" ? (
+            <Input
+              name='email'
+              kind='text'
+              label='email'
+              type='email'
+              required
+            />
+          ) : null}
+          {method === "phone" ? (
+            <Input
+              name='phone'
+              kind='phone'
+              label='phone number'
+              type='number'
+              required
+            />
+          ) : null}
           <button className='mt-5 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 border-2 border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-offset-2 focus:outline-none'>
             {method === "email" ? "Get login link" : null}
             {method === "phone" ? "Get one-time password" : null}
@@ -77,7 +69,6 @@ function Enter() {
         </form>
         <div>
           <div>
-            <div />
             <div>
               <span className='flex justify-center mt-5'>Or enter with</span>
             </div>
