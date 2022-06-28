@@ -1,14 +1,35 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Input from "../components/input";
 import { cls } from "../libs/utils";
 
+interface EnterFormProps {
+  phone?: string;
+  email?: string;
+}
+
 function Enter() {
+  const [submitting, setSubmitting] = useState(false);
+  const { register, watch, handleSubmit, reset } = useForm<EnterFormProps>();
   const [method, setMethod] = useState<"email" | "phone">("phone");
 
   const onPhoneOrEmailClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const emailTab = (event.target as Element).classList.contains("email");
-
+    reset();
     emailTab ? setMethod("email") : setMethod("phone");
+  };
+
+  const onValid = async (data: EnterFormProps) => {
+    console.log(data);
+    setSubmitting(true);
+    await fetch("/api/users/enter", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setSubmitting(false);
   };
 
   return (
@@ -43,29 +64,33 @@ function Enter() {
             </button>
           </div>
         </div>
-        <form className='flex flex-col mt-8'>
+        <form onSubmit={handleSubmit(onValid)} className='flex flex-col mt-8'>
           {method === "email" ? (
             <Input
+              register={register("email", { required: true })}
               name='email'
               kind='text'
               label='email'
               type='email'
-              required
             />
           ) : null}
           {method === "phone" ? (
             <Input
+              register={register("phone", { required: true })}
               name='phone'
+              type='number'
               kind='phone'
               label='phone number'
-              type='number'
-              required
             />
           ) : null}
-          <button className='mt-5 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 border-2 border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-offset-2 focus:outline-none'>
-            {method === "email" ? "Get login link" : null}
-            {method === "phone" ? "Get one-time password" : null}
-          </button>
+          {submitting ? (
+            <div>spinner</div>
+          ) : (
+            <button className='mt-5 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 border-2 border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-offset-2 focus:outline-none'>
+              {method === "email" ? "Get login link" : null}
+              {method === "phone" ? "Get one-time password" : null}
+            </button>
+          )}
         </form>
         <div>
           <div>
