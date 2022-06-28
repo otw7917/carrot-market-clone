@@ -7,7 +7,7 @@ interface UploadButtonProps {
 
 function UploadButton({ name, children }: UploadButtonProps) {
   return (
-    <button className='w-full text-white font-medium bg-orange-400 rounded-md py-2 shadow-lg hover:animate-pulse hover:bg-orange-600 '>
+    <button className='mt-5 w-full text-white font-medium bg-orange-400 rounded-md py-2 shadow-lg hover:bg-orange-600 '>
       {name}
     </button>
   );

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/input";
+import UploadButton from "../components/UploadButton";
+import useMutation from "../libs/client/useMutation";
 import { cls } from "../libs/utils";
 
 interface EnterFormProps {
@@ -9,7 +11,7 @@ interface EnterFormProps {
 }
 
 function Enter() {
-  const [submitting, setSubmitting] = useState(false);
+  const [enter, { loading, error, data }] = useMutation("/api/users/enter");
   const { register, watch, handleSubmit, reset } = useForm<EnterFormProps>();
   const [method, setMethod] = useState<"email" | "phone">("phone");
 
@@ -19,17 +21,9 @@ function Enter() {
     emailTab ? setMethod("email") : setMethod("phone");
   };
 
-  const onValid = async (data: EnterFormProps) => {
-    console.log(data);
-    setSubmitting(true);
-    await fetch("/api/users/enter", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    setSubmitting(false);
+  const onValid = (formData: EnterFormProps) => {
+    if (loading) return;
+    enter(formData);
   };
 
   return (
@@ -83,14 +77,11 @@ function Enter() {
               label='phone number'
             />
           ) : null}
-          {submitting ? (
-            <div>spinner</div>
-          ) : (
-            <button className='mt-5 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 border-2 border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-offset-2 focus:outline-none'>
-              {method === "email" ? "Get login link" : null}
-              {method === "phone" ? "Get one-time password" : null}
-            </button>
-          )}
+          <UploadButton
+            name={
+              method === "email" ? "Get login link" : "Get one-time password"
+            }
+          ></UploadButton>
         </form>
         <div>
           <div>
