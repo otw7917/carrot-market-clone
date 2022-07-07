@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import client from "../../../libs/client";
-import withHandler from "../../../libs/server/withHandler";
+import client from "@libs/client";
+import withHandler from "@libs/server/withHandler";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { phone, email } = req.body;

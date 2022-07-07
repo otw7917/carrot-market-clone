@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Input from "../components/input";
-import UploadButton from "../components/UploadButton";
-import useMutation from "../libs/client/useMutation";
-import { cls } from "../libs/utils";
+import Input from "@components/input";
+import UploadButton from "@components/UploadButton";
+import useMutation from "@libs/client/useMutation";
+import { cls } from "@libs/utils";
 
 interface EnterFormProps {
   phone?: string;

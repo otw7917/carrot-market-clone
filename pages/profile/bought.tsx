@@ -1,5 +1,5 @@
 import React from "react";
-import ProductBox from "../../components/ProductBox";
+import ProductBox from "@components/ProductBox";
 
 // 보인 판매 목록 리스트
 function Bought() {
