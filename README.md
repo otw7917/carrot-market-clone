@@ -68,3 +68,9 @@ dependency
 ## Prisma & planetScale
 
 [Prisma, planetScale 정리하기](./document/pp.md)
+
+## typescript
+
+import, export type
+=> 타입 표기와 선언에 사용될 선언만 import
+=> 런타임시 제거됌

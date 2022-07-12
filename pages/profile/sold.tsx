@@ -1,5 +1,5 @@
 import React from "react";
-import ProductBox from "../../components/ProductBox";
+import ProductBox from "@components/ProductBox";
 
 function Sold() {
   return (

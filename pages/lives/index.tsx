@@ -1,6 +1,6 @@
 import React from "react";
-import FloatingButton from "../../components/FloatingButton";
-import Layout from "../../components/Layout";
+import FloatingButton from "@components/FloatingButton";
+import Layout from "@components/Layout";
 
 function Lives() {
   return (
