@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-interface useMutationProps {
+interface useMutationProps<T> {
   loading: boolean;
-  data?: object;
+  data?: T;
   error?: object;
 }
 
-type useMutationResults = [(data: any) => void, useMutationProps];
+type useMutationResults<T> = [(data: any) => void, useMutationProps<T>];
 
-function useMutation(url: string): useMutationResults {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+function useMutation<T>(url: string): useMutationResults<T> {
+  const [state, setState] = useState<useMutationProps<T>>({
+    data: undefined,
+    error: undefined,
+    loading: false,
+  });
 
   // enter_form_data => api/~ 보내기
   function mutation(data: any) {
-    setLoading(true);
+    setState((prev) => ({ ...prev, loading: true }));
     fetch(url, {
       method: "POST",
       headers: {
@@ -24,11 +26,12 @@ function useMutation(url: string): useMutationResults {
       body: JSON.stringify(data),
     })
       .then((resposne) => resposne.json().catch(() => {}))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+      .then((data) => setState((prev) => ({ ...prev, data })))
+      .catch((error) => setState((prev) => ({ ...prev, error })))
+      .finally(() => setState((prev) => ({ ...prev, loading: false })));
   }
 
-  return [mutation, { data, loading, error }];
+  return [mutation, { ...state }];
 }
 
 export default useMutation;
