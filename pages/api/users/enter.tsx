@@ -9,6 +9,7 @@ interface ResponseType {
 }
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log("api/users/enter");
   const { phone, email } = req.body;
   const user = phone ? { phone } : email ? { email } : null;
   if (!user) return res.status(404).json({ ok: false });

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "@components/input";
 import UploadButton from "@components/UploadButton";
 import useMutation from "@libs/client/useMutation";
 import { cls } from "@libs/utils";
+import { useRouter } from "next/router";
 
 interface EnterFormProps {
   phone?: string;
@@ -21,11 +22,14 @@ interface MutationResult {
 function Enter() {
   const [enter, { loading, error, data }] =
     useMutation<MutationResult>("/api/users/enter");
+
   const [confirmToken, { loading: tokenLoading, data: tokenData }] =
-    useMutation("/api/users/confirm");
+    useMutation<MutationResult>("/api/users/confirm");
+
   const { register, handleSubmit, reset } = useForm<EnterFormProps>();
   const { register: tokenRegister, handleSubmit: tokenHandleSubmit } =
     useForm<TokenFormProps>();
+
   const [method, setMethod] = useState<"email" | "phone">("phone");
 
   const onPhoneOrEmailClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -42,7 +46,14 @@ function Enter() {
     if (tokenLoading) return;
     confirmToken(validForm);
   };
-  console.log(data);
+
+  const router = useRouter();
+  useEffect(() => {
+    if (tokenData?.ok) {
+      router.push("/");
+    }
+  }, [tokenData, router]);
+
   return (
     <div className='mt-16 px-4'>
       <h3 className='text-center text-3xl font-bold mt-1'>Enter to Carrot</h3>
@@ -59,7 +70,9 @@ function Enter() {
               label='confirm token'
               type='text'
             />
-            <UploadButton name={loading ? "loading ~ " : "confirm token"} />
+            <UploadButton
+              name={tokenLoading ? "loading ~ " : "confirm token"}
+            />
           </form>
         ) : (
           <>
